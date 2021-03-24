@@ -76,5 +76,9 @@
 
 ;;Exit insert mode by pressing f and then d quickly
 (key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.2)
+(setq key-chord-two-keys-delay 0.3)
 (key-chord-define-global "fd" 'evil-normal-state)
+
+;; Disable evil-snipe-s for keybind s
+(after! evil-snipe
+  (evil-snipe-mode -1))
