@@ -4,10 +4,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
-   ["#21242b" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#bbc2cf"])
+   ["#282c34" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#bbc2cf"])
  '(custom-safe-themes
    (quote
-    ("f4876796ef5ee9c82b125a096a590c9891cec31320569fc6ff602ff99ed73dca" default)))
+    ("f4876796ef5ee9c82b125a096a590c9891cec31320569fc6ff602ff99ed73dca" "bd6bc6841875b94b1db99aaa0ef3e48634a3a472e4d0fa0b15c4c714ad68bd57" default)))
  '(fci-rule-color "#5B6268")
  '(jdee-db-active-breakpoint-face-colors (cons "#1B2229" "#51afef"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1B2229" "#98be65"))
