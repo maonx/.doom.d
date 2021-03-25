@@ -139,3 +139,20 @@
 
 ;; Disable word-wrap
 (setq word-wrap 1)
+
+(setq org-capture-templates nil)
+
+(setq org-log-done 'time)
+
+(add-to-list 'org-capture-templates
+             '("i" "Inbox" entry
+               (file+headline "~/org/inbox.org" "Inbox")
+               "* %U - %^{Title} %^G\n %?\n" :empty-lines 1))
+(add-to-list 'org-capture-templates
+             '("t" "Tasks" entry
+               (file+headline "~/org/todo.org" "Tasks")
+               "* TODO %^{Title} %^G\n %?\n" :empty-lines 1))
+(add-to-list 'org-capture-templates
+             '("l" "Life" entry
+               (file+olp+datetree "~/org/life.org" "Life")
+               "* %U - %^{Title}\n %?\n" :empty-lines 1))
