@@ -50,3 +50,4 @@
 ;(unpin! t)
 (package! evil-matchit)
 (package! key-chord)
+(package! ox-hugo)

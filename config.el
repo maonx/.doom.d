@@ -156,3 +156,10 @@
              '("l" "Life" entry
                (file+olp+datetree "~/org/life.org" "Life")
                "* %U - %^{Title}\n %?\n" :empty-lines 1))
+
+;; ox-hugo
+(use-package! ox-hugo
+  :after ox
+  :config
+  (org-hugo-auto-export-mode)
+  )
