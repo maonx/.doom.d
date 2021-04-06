@@ -29,7 +29,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "/mnt/c/Users/Maonx/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -156,10 +156,43 @@
              '("l" "Life" entry
                (file+olp+datetree "~/org/life.org" "Life")
                "* %U - %^{Title}\n %?\n" :empty-lines 1))
+(add-to-list 'org-capture-templates
+             '("w" "Troubleshooting" entry
+               (file+headline "/mnt/c/Users/Maonx/org/blog/post.org" "故障排除")
+               "** %^{Title}\n %?\n" :empty-lines 0))
+
+;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
+(with-eval-after-load 'org-capture
+  (defun org-hugo-new-subtree-post-capture-template ()
+    "Returns `org-capture' template string for new Hugo post.
+See `org-capture-templates' for more information."
+    (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
+           (fname (org-hugo-slug title)))
+      (mapconcat #'identity
+                 `(
+                   ,(concat "* TODO " title)
+                   ":PROPERTIES:"
+                   ,(concat ":EXPORT_FILE_NAME: " fname)
+                   ":END:"
+                   "%?\n")          ;Place the cursor here finally
+                 "\n")))
+
+  (add-to-list 'org-capture-templates
+               '("h"                ;`org-capture' binding + h
+                 "Hugo post"
+                 entry
+                 ;; It is assumed that below file is present in `org-directory'
+                 ;; and that it has a "Blog Ideas" heading. It can even be a
+                 ;; symlink pointing to the actual location of all-posts.org!
+                 (file "./blog/post.org" )
+                 (function org-hugo-new-subtree-post-capture-template))))
+
 
 ;; ox-hugo
 (use-package! ox-hugo
   :after ox
   :config
   (org-hugo-auto-export-mode)
+  ;; 解决ox-hugo 转换 md 时代码块有多余缩进
+  (setq org-src-preserve-indentation nil)
   )
