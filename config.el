@@ -31,6 +31,9 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/emacs/org/")
 
+(setq org-agenda-files '("~/emacs/org/inbox.org"
+                         ))
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 ;; (setq display-line-numbers-type t)
@@ -144,16 +147,16 @@
 
 (add-to-list 'org-capture-templates
              '("i" "Inbox" entry
-               (file+headline "~/org/inbox.org" "Inbox")
+               (file+headline "~/emacs/org/inbox.org" "Inbox")
                "* %U - %^{Title} %^G\n %?\n" :empty-lines 1))
 (add-to-list 'org-capture-templates
              '("t" "Tasks" entry
-               (file+headline "~/org/todo.org" "Tasks")
+               (file+headline "~/emacs/org/inbox.org" "Tasks")
                "* TODO %^{Title} %^G\n %?\n" :empty-lines 1))
-(add-to-list 'org-capture-templates
-             '("l" "Life" entry
-               (file+olp+datetree "~/org/life.org" "Life")
-               "* %U - %^{Title}\n %?\n" :empty-lines 1))
+;; (add-to-list 'org-capture-templates
+;;              '("l" "Life" entry
+;;                (file+olp+datetree "~/org/life.org" "Life")
+;;                "* %U - %^{Title}\n %?\n" :empty-lines 1))
 (add-to-list 'org-capture-templates
              '("w" "Troubleshooting" entry
                (file+headline "~/emacs/org/blog/post.org" "故障排除")
