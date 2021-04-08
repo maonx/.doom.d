@@ -29,7 +29,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "/mnt/c/Users/Maonx/org/")
+(setq org-directory "~/emacs/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -89,9 +89,7 @@
   :demand t
   :config
   ;; 激活 basedict 拼音词库，五笔用户请继续阅读 README
-  (use-package pyim-basedict
-    :ensure nil
-    :config (pyim-basedict-enable))
+  (pyim-basedict-enable)
 
   (setq default-input-method "pyim")
 
@@ -158,7 +156,7 @@
                "* %U - %^{Title}\n %?\n" :empty-lines 1))
 (add-to-list 'org-capture-templates
              '("w" "Troubleshooting" entry
-               (file+headline "/mnt/c/Users/Maonx/org/blog/post.org" "故障排除")
+               (file+headline "~/emacs/org/blog/post.org" "故障排除")
                "** %^{Title}\n %?\n" :empty-lines 0))
 
 ;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
