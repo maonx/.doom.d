@@ -63,7 +63,7 @@
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font) charset
                       (font-spec :family "Hiragino Sans GB W3" :size 16))))
-                      ;; (font-spec :family "Microsoft Yahei" :size 16))))
+;; (font-spec :family "Microsoft Yahei" :size 16))))
 
 (if window-system (self-font))
 
@@ -141,52 +141,54 @@
 ;; Disable word-wrap
 (setq word-wrap 1)
 
-(setq org-capture-templates nil)
+(after! org
+  (setq org-capture-templates nil)
 
-(setq org-log-done 'time)
-
-(add-to-list 'org-capture-templates
-             '("i" "Inbox" entry
-               (file+headline "~/emacs/org/inbox.org" "Inbox")
-               "* %U - %^{Title} %^G\n %?\n" :empty-lines 1))
-(add-to-list 'org-capture-templates
-             '("t" "Tasks" entry
-               (file+headline "~/emacs/org/inbox.org" "Tasks")
-               "* TODO %^{Title} %^G\n %?\n" :empty-lines 1))
-;; (add-to-list 'org-capture-templates
-;;              '("l" "Life" entry
-;;                (file+olp+datetree "~/org/life.org" "Life")
-;;                "* %U - %^{Title}\n %?\n" :empty-lines 1))
-(add-to-list 'org-capture-templates
-             '("w" "Troubleshooting" entry
-               (file+headline "~/emacs/org/blog/post.org" "故障排除")
-               "** %^{Title}\n %?\n" :empty-lines 0))
-
-;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
-(with-eval-after-load 'org-capture
-  (defun org-hugo-new-subtree-post-capture-template ()
-    "Returns `org-capture' template string for new Hugo post.
-See `org-capture-templates' for more information."
-    (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
-           (fname (org-hugo-slug title)))
-      (mapconcat #'identity
-                 `(
-                   ,(concat "* TODO " title)
-                   ":PROPERTIES:"
-                   ,(concat ":EXPORT_FILE_NAME: " fname)
-                   ":END:"
-                   "%?\n")          ;Place the cursor here finally
-                 "\n")))
+  (setq org-log-done 'time)
 
   (add-to-list 'org-capture-templates
-               '("h"                ;`org-capture' binding + h
-                 "Hugo post"
-                 entry
-                 ;; It is assumed that below file is present in `org-directory'
-                 ;; and that it has a "Blog Ideas" heading. It can even be a
-                 ;; symlink pointing to the actual location of all-posts.org!
-                 (file "./blog/post.org" )
-                 (function org-hugo-new-subtree-post-capture-template))))
+               '("i" "Inbox" entry
+                 (file+headline "~/emacs/org/inbox.org" "Inbox")
+                 "* %U - %^{Title} %^G\n %?\n" :empty-lines 1))
+  (add-to-list 'org-capture-templates
+               '("t" "Tasks" entry
+                 (file+headline "~/emacs/org/inbox.org" "Tasks")
+                 "* TODO %^{Title} %^G\n %?\n" :empty-lines 1))
+  ;; (add-to-list 'org-capture-templates
+  ;;              '("l" "Life" entry
+  ;;                (file+olp+datetree "~/org/life.org" "Life")
+  ;;                "* %U - %^{Title}\n %?\n" :empty-lines 1))
+  (add-to-list 'org-capture-templates
+               '("w" "Troubleshooting" entry
+                 (file+headline "~/emacs/org/blog/post.org" "故障排除")
+                 "** %^{Title}\n %?\n" :empty-lines 0))
+
+  ;; Populates only the EXPORT_FILE_NAME property in the inserted headline.
+  (with-eval-after-load 'org-capture
+    (defun org-hugo-new-subtree-post-capture-template ()
+      "Returns `org-capture' template string for new Hugo post.
+See `org-capture-templates' for more information."
+      (let* ((title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
+             (fname (org-hugo-slug title)))
+        (mapconcat #'identity
+                   `(
+                     ,(concat "* TODO " title)
+                     ":PROPERTIES:"
+                     ,(concat ":EXPORT_FILE_NAME: " fname)
+                     ":END:"
+                     "%?\n")          ;Place the cursor here finally
+                   "\n")))
+
+    (add-to-list 'org-capture-templates
+                 '("h"                ;`org-capture' binding + h
+                   "Hugo post"
+                   entry
+                   ;; It is assumed that below file is present in `org-directory'
+                   ;; and that it has a "Blog Ideas" heading. It can even be a
+                   ;; symlink pointing to the actual location of all-posts.org!
+                   (file "./blog/post.org" )
+                   (function org-hugo-new-subtree-post-capture-template))))
+  )
 
 
 ;; ox-hugo

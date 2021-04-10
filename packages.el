@@ -52,3 +52,4 @@
 (package! key-chord)
 (package! ox-hugo)
 (package! pyim-basedict)
+;; (package! posframe)
