@@ -56,14 +56,21 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-;; 编码设置 begin
-(set-language-environment 'Chinese-GB)
 
+(if (eq system-type 'windwos-nt)
+    (setq system-time-locale "C")
+  (format-time-string "%Y-%m-%d %a")
+  )
+
+;; 编码设置 begin
+;; (set-language-environment 'Chinese-GB)
+(set-language-environment 'utf-8)
 ;; default-buffer-file-coding-system变量在emacs23.2之后已被废弃，使用buffer-file-coding-system代替
 (set-default buffer-file-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
-(setq-default pathname-coding-system 'euc-cn)
-(setq file-name-coding-system 'euc-cn)
+;; 影响导出文件名乱码问题
+(setq-default pathname-coding-system 'utf-8)
+(setq file-name-coding-system 'utf-8)
 
 ;; 另外建议按下面的先后顺序来设置中文编码识别方式。
 ;; 重要提示:写在最后一行的，实际上最优先使用; 最前面一行，反而放到最后才识别。
@@ -91,9 +98,7 @@
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font) charset
                       (font-spec :family "Hiragino Sans GB W3" :size 16))))
-;; (font-spec :family "Microsoft Yahei" :size 16))))
-
-(if window-system (self-font))
+(self-font)
 
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
                          ("org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
@@ -155,7 +160,8 @@
   ;; 使用 popup-el 来绘制选词框, 如果用 emacs26, 建议设置
   ;; 为 'posframe, 速度很快并且菜单不会变形，不过需要用户
   ;; 手动安装 posframe 包。
-  (setq pyim-page-tooltip 'popup)
+  (setq pyim-page-tooltip 'posframe)
+  ;; (setq pyim-page-tooltip 'popup)
 
   ;; 选词框显示5个候选词
   (setq pyim-page-length 5)
