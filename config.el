@@ -32,7 +32,7 @@
 (setq org-directory "~/emacs/org/")
 
 (setq org-agenda-files '("~/emacs/org/inbox.org"
-                         ))
+                         "~/emacs/org/todo.org"))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -160,8 +160,8 @@
   ;; 使用 popup-el 来绘制选词框, 如果用 emacs26, 建议设置
   ;; 为 'posframe, 速度很快并且菜单不会变形，不过需要用户
   ;; 手动安装 posframe 包。
-  (setq pyim-page-tooltip 'posframe)
-  ;; (setq pyim-page-tooltip 'popup)
+  ;; (setq pyim-page-tooltip 'posframe)
+  (setq pyim-page-tooltip 'popup)
 
   ;; 选词框显示5个候选词
   (setq pyim-page-length 5)
@@ -180,14 +180,22 @@
 
   (setq org-log-done 'time)
 
+  (setq org-todo-keywords
+        '((sequence
+           "TODO(t)"
+           "DELAY(D!)"
+           "|"
+           "DONE(d)"
+           "CANCELL(c@/!)"
+           )))
   (add-to-list 'org-capture-templates
                '("i" "Inbox" entry
-                 (file+headline "~/emacs/org/inbox.org" "Inbox")
+                 (file "~/emacs/org/inbox.org")
                  "* %U - %^{Title} %^G\n %?\n" :empty-lines 1))
   (add-to-list 'org-capture-templates
                '("t" "Tasks" entry
-                 (file+headline "~/emacs/org/inbox.org" "Tasks")
-                 "* TODO %^{Title} %^G\n %?\n" :empty-lines 1))
+                 (file "~/emacs/org/todo.org" )
+                 "* TODO %^{Title} %^G\nOPENED: %U\n%?\n" :empty-lines 1))
   ;; (add-to-list 'org-capture-templates
   ;;              '("l" "Life" entry
   ;;                (file+olp+datetree "~/org/life.org" "Life")
