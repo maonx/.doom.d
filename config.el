@@ -25,7 +25,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-one-light)
+(if (string-match "\\`Win10" (system-name))
+        (setq doom-theme 'doom-one))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -160,8 +162,8 @@
   ;; 使用 popup-el 来绘制选词框, 如果用 emacs26, 建议设置
   ;; 为 'posframe, 速度很快并且菜单不会变形，不过需要用户
   ;; 手动安装 posframe 包。
-  ;; (setq pyim-page-tooltip 'posframe)
-  (setq pyim-page-tooltip 'popup)
+  (setq pyim-page-tooltip 'posframe)
+  ;; (setq pyim-page-tooltip 'popup)
 
   ;; 选词框显示5个候选词
   (setq pyim-page-length 5)
