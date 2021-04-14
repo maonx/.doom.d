@@ -25,9 +25,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one-light)
-(if (string-match "\\`Win10" (system-name))
-        (setq doom-theme 'doom-one))
+(setq doom-theme 'doom-one)
+(if (string-match "\\`Win10-Office" (system-name))
+        (setq doom-theme 'doom-one-light))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -63,6 +63,8 @@
     (setq system-time-locale "C")
   (format-time-string "%Y-%m-%d %a")
   )
+
+;; (setq-default fill-column 80)
 
 ;; 编码设置 begin
 ;; (set-language-environment 'Chinese-GB)
