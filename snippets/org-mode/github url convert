@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: github url convert
+# key: url
+# --
+https://cdn.jsdelivr.net/gh/maonx/blog-images@main/$0.png
