@@ -154,6 +154,7 @@
   ;; 开启拼音搜索功能
   (pyim-isearch-mode 1)
   ;; 设置模糊音
+  (setq pyim-dcache-backend 'pyim-dregcache)
   (setq pyim-fuzzy-pinyin-alist '(("en" "eng")
                                   ("in" "ing")
                                   ("z" "zh")
