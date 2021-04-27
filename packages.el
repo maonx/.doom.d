@@ -53,3 +53,5 @@
 (package! ox-hugo)
 (package! pyim-basedict)
 (package! posframe)
+(package! rime)
+(package! liberime)
