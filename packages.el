@@ -55,3 +55,8 @@
 (package! posframe)
 (package! rime)
 (package! liberime)
+;; (package! +rime-predicates
+;;   :recipe (:host github :repo "cnsunyour/.doom.d"
+;;            :files ("modules/cnsunyour/chinese/+rime-predicates.el")))
+(package! beancount
+  :recipe (:host github :repo "cnsunyour/beancount.el"))

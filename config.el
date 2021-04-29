@@ -195,6 +195,32 @@ See `org-capture-templates' for more information."
   (setq org-src-preserve-indentation nil)
   )
 
-(setq rime-user-data-dir "~/.config/rime")
-(setq default-input-method "rime"
-      rime-show-candidate 'posframe)
+(use-package! rime
+  :config
+  (setq default-input-method "rime"
+        rime-user-data-dir (expand-file-name "~/.config/rime")
+        rime-show-candidate 'posframe
+        rime-inline-ascii-trigger 'shift-l)
+
+  (add-hook! (org-mode
+              markdown-mode
+              beancount-mode)
+    (activate-input-method default-input-method))
+)
+
+(use-package! beancount
+  :defer t
+  :bind
+  ;; ("C-M-b" . (lambda ()
+  ;;              (interactive)
+  ;;              (find-file "~/Dropbox/beancount/main.bean")))
+  :mode
+  ("\\.bean\\(?:count\\)?\\'" . beancount-mode)
+  ;; :config
+  ;; (setq beancount-accounts-files
+  ;;       (directory-files "~/Dropbox/beancount/accounts/"
+                         ;; 'full
+                         ;; (rx ".bean" eos)))
+)
+
+(fset 'delete-empty-lines (kbd "M-x flush-lines RET ^\s-*$ RET"))
