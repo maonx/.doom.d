@@ -185,6 +185,4 @@
        ;;literate
        (default +bindings +smartparens)
 
-       :maonx
-       chinese
        )
