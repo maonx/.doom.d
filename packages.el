@@ -51,10 +51,11 @@
 (package! evil-matchit)
 (package! key-chord)
 (package! ox-hugo)
-(package! pyim-basedict)
-(package! posframe)
+;; (package! pyim-basedict)
+;; (package! posframe)
 (package! rime)
-(package! liberime)
+;; (package! pyim)
+;; (package! liberime)
 ;; (package! +rime-predicates
 ;;   :recipe (:host github :repo "cnsunyour/.doom.d"
 ;;            :files ("modules/cnsunyour/chinese/+rime-predicates.el")))

@@ -200,7 +200,8 @@ See `org-capture-templates' for more information."
   (setq default-input-method "rime"
         rime-user-data-dir (expand-file-name "~/.config/rime")
         rime-show-candidate 'posframe
-        rime-inline-ascii-trigger 'shift-l)
+        )
+  (global-set-key (kbd "M-;") 'toggle-input-method)
 
   (add-hook! (org-mode
               markdown-mode
