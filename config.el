@@ -202,6 +202,7 @@ See `org-capture-templates' for more information."
         rime-show-candidate 'posframe
         )
   (global-set-key (kbd "M-;") 'toggle-input-method)
+  (global-set-key (kbd "C-;") 'toggle-input-method)
 
   (add-hook! (org-mode
               markdown-mode
