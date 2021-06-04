@@ -139,7 +139,7 @@
            "DELAY(D!)"
            "|"
            "DONE(d)"
-           "CANCELL(c@/!)"
+           "CANCEL(c@/!)"
            )))
   (add-to-list 'org-capture-templates
                '("i" "Inbox" entry
