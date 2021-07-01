@@ -226,3 +226,5 @@ See `org-capture-templates' for more information."
 )
 
 (fset 'delete-empty-lines (kbd "M-x flush-lines RET ^\s-*$ RET"))
+
+(setq projectile-file-exists-local-cache-expire (* 5 60))
